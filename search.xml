@@ -1,9 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hexo写文章创建文件自动打开编辑器</title>
+    <url>/2021/01/16/Hexo%E5%86%99%E6%96%87%E7%AB%A0%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E8%87%AA%E5%8A%A8%E6%89%93%E5%BC%80%E7%BC%96%E8%BE%91%E5%99%A8/</url>
+    <content><![CDATA[<p>在Hexo中新建一篇博文非常简单，只需要在命令行中键入以下命令然后回车即可：</p>
+<pre><code>hexo n &quot;博文标题&quot;</code></pre>
+<p>然后hexo就会在hexo的根目录下的source目录下的_post目录下自动创建相对应的md文件。然后我们只需要找到刚刚生成的文件进行编辑就可以了。</p>
+<p>但是一旦文章比较多的情况下，我们就需要在成堆的md文件中找刚刚创建的博文，这就比较麻烦。</p>
+<a id="more"></a>
+<p><strong>解决办法</strong></p>
+<ol>
+<li>新建scripts目录（hexo根目录）</li>
+<li>创建auto_open.js文件,如下<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var spawn &#x3D; require(&#39;child_process&#39;).exec;</span><br><span class="line">hexo.on(&#39;new&#39;, function(data)&#123;</span><br><span class="line">  spawn(&#39;start &quot;C:\Program Files\Typora\Typora.exe&quot; &#39; + data.path);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+PS：上面自行替换为markdown编辑器绝对路径.exe,这里我使用的是typora的地址</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo的Next主题中文目录点击失效解决办法</title>
+    <url>/2021/01/16/Hexo%E7%9A%84Next%E4%B8%BB%E9%A2%98%E4%B8%AD%E6%96%87%E7%9B%AE%E5%BD%95%E7%82%B9%E5%87%BB%E5%A4%B1%E6%95%88%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+    <content><![CDATA[<p>在 Hexo 更新至 5.x 版本，Next 更新至 7.x 版本后，会出现文章的中文目录点击跳转失效的 bug。</p>
+<p>目前官方已经给出解决方法。如图，在 themes/next/source/js/util.js 中增加两行代码，删除两行代码。保存，hexo clean &amp; hexo g &amp; hexo s 即可解决。（如果还是不行就删除浏览器缓存重试）</p>
+<a id="more"></a>
+
+<p>Github Issues链接：<a href="https://github.com/theme-next/hexo-theme-next/pull/1540/files">https://github.com/theme-next/hexo-theme-next/pull/1540/files</a></p>
+<p><img src="/2021/01/16/Hexo%E7%9A%84Next%E4%B8%BB%E9%A2%98%E4%B8%AD%E6%96%87%E7%9B%AE%E5%BD%95%E7%82%B9%E5%87%BB%E5%A4%B1%E6%95%88%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/clipboard.png" alt="img"></p>
+<p><img src="/2021/01/16/Hexo%E7%9A%84Next%E4%B8%BB%E9%A2%98%E4%B8%AD%E6%96%87%E7%9B%AE%E5%BD%95%E7%82%B9%E5%87%BB%E5%A4%B1%E6%95%88%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/clipboard-1610810931118.png" alt="img"></p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JDK环境变量配置相关知识</title>
     <url>/2021/01/14/JDK%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h1 id="JAVA-HOME-PATH-CLASSPATH-dt-jar、tools-jar等变量值的作用"><a href="#JAVA-HOME-PATH-CLASSPATH-dt-jar、tools-jar等变量值的作用" class="headerlink" title="JAVA_HOME PATH CLASSPATH dt.jar、tools.jar等变量值的作用"></a>JAVA_HOME PATH CLASSPATH dt.jar、tools.jar等变量值的作用</h1><h2 id="JAVA-HOME"><a href="#JAVA-HOME" class="headerlink" title="JAVA_HOME"></a>JAVA_HOME</h2><ol>
+<li>变量名：JAVA_HOME</li>
+<li>变量值：D:\Java\jdk8 </li>
+<li>用途:定义一个变量，供其他地方使用<br>##PATH</li>
+<li>变量名：Path</li>
+<li>变量值：%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;</li>
+<li>用途：让系统在任何路径下都可以识别java、javac、javap等命令<h2 id="CLASSPATH"><a href="#CLASSPATH" class="headerlink" title="CLASSPATH"></a>CLASSPATH</h2></li>
+<li>变量名：CLASSPATH</li>
+<li>变量值：.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;</li>
+<li>用途：告诉jvm要使用或执行的class放在什么路径上，便于JVM加载class文件，.;表示当前路径，tools.jar和dt.jar为类库路径<h2 id="CLASSPATH详解"><a href="#CLASSPATH详解" class="headerlink" title="CLASSPATH详解"></a>CLASSPATH详解</h2><h3 id="tools-jar"><a href="#tools-jar" class="headerlink" title="tools.jar"></a>tools.jar</h3>工具类库(编译和运行等)，它跟我们程序中用到的基础类库没有关系。我们注意到在Path中变量值bin目录下的各个exe工具的大小都很小，一般都在27KB左右，这是因为它们实际上仅仅相当于是一层代码的包装，这些工具的实现所要用到的类库都在tools.jar中，用压缩软件打开tools.jar,你会发现有很多文件是和bin目录下的exe工具相对性的，查看图一。当然，如果tools.jar的功能只有这些的话，那么我们根本不用把它加入到CLASSPATH变量中，因为bin目录下的工具自己可以完成对这些类库的调用，因此tools.jar应该还有其他的功能。在里面还可以看到有Applet和RMI等相关的文件，因此tools.jar应该还是远程调用等必须的jar包。tools.jar的其他作用可以查看其他资料。</li>
+</ol>
+<h3 id="dt-jar"><a href="#dt-jar" class="headerlink" title="dt.jar"></a>dt.jar</h3><p><strong>运行环境类库，主要是Swing包</strong>，这一点通过用压缩软件打开dt.jar也可以看到。如果在开发时候没有用到Swing包，那么可以不用将dt.jar添加到CLASSPATH变量中。</p>
+<p><strong>CLASSPATH中的类库</strong>是由Application ClassLoader或者我们自定义的类加载器来加载的，这里当然不能包括基础类库，如果包括基础类库的话，并用两个不同的自定义类加载器去加载该基础类，那它得到的该基础类就不是唯一的了，这样便不能保证Java类的安全性。</p>
+<h3 id="基本类库和扩展类库rt-jar"><a href="#基本类库和扩展类库rt-jar" class="headerlink" title="基本类库和扩展类库rt.jar"></a>基本类库和扩展类库rt.jar</h3><p>基本类库是所有的 import java.* 开头的类，在 %JAVA_HOME%\jre\lib 目录下（如其中的 rt.jar、resource.jar ），类加载机制提到，该目录下的类会由 Bootstrap ClassLoader 自动加载，并通过亲委派模型保证了基础类库只会被Bootstrap ClassLoader加载，这也就保证了基础类的唯一性。<br>扩展类库是所有的 import javax.* 开头的类，在 %JAVA_HOME%\jre\lib\ext 目录下，该目录下的类是由Extension ClassLoader 自动加载，不需要我们指定。<br>rt.jar 默认就在根classloader的加载路径里面,放在claspath也是多此一举</p>
+<h1 id="win10安装不同版本JDK的教程"><a href="#win10安装不同版本JDK的教程" class="headerlink" title="win10安装不同版本JDK的教程"></a>win10安装不同版本JDK的教程</h1><h2 id="1-环境变量设置"><a href="#1-环境变量设置" class="headerlink" title="1.环境变量设置"></a>1.环境变量设置</h2><ol>
+<li> 点击高级系统设置–&gt;环境变量</li>
+<li>设置多个子JAVA_HOME，一个总JAVA_HOME:<table>
+<thead>
+<tr>
+<th align="center">变量</th>
+<th align="center">值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">JAVA_HOME</td>
+<td align="center">%JAVA_HOME7%</td>
+</tr>
+<tr>
+<td align="center">JAVA_HOME7</td>
+<td align="center">C:\Program Files\Java\jdk1.7.0_51</td>
+</tr>
+<tr>
+<td align="center">JAVA_HOME8</td>
+<td align="center">C:\ProgramFiles\Java\jdk1.8.0_181</td>
+</tr>
+<tr>
+<td align="center">JAVA_HOME11</td>
+<td align="center">C:\ProgramFiles\Java\jdk-11.0.4</td>
+</tr>
+<tr>
+<td align="center">此处JAVA_HOME设置即为你更换jdk版本是所要修改的地方，可随意切换。</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">变量</td>
+<td align="center">值</td>
+</tr>
+<tr>
+<td align="center">:—-:</td>
+<td align="center">:—-:</td>
+</tr>
+<tr>
+<td align="center">JAVA_HOME</td>
+<td align="center">%JAVA_HOME11%</td>
+</tr>
+<tr>
+<td align="center"><img src="/2021/01/14/JDK%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/18172937800.jpeg" alt="img"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h2 id="2-添加-path-变量"><a href="#2-添加-path-变量" class="headerlink" title="2. 添加 path 变量"></a>2. 添加 path 变量</h2> path = %JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;<h2 id="3-添加classpath变量"><a href="#3-添加classpath变量" class="headerlink" title="3. 添加classpath变量"></a>3. 添加classpath变量</h2> classpath = .;%JAVA_HOME%lib\dt.jar;%JAVA_HOME%\lib\tools.jar<br>注意：这里直接在CLASSPATH环境变量中加入“.;”，“.”的意思是搜索当前目录。<h2 id="4-查看版本是否更换成功"><a href="#4-查看版本是否更换成功" class="headerlink" title="4. 查看版本是否更换成功"></a>4. 查看版本是否更换成功</h2> java -version<br> javac -version</li>
+</ol>
+]]></content>
       <categories>
         <category>后端</category>
         <category>Java</category>
